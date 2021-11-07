@@ -31,29 +31,21 @@ jobs:
         run: |
           chmod +x chumbi-image-downloader.sh
           ./chumbi-image-downloader.sh auto
-  
-  Release:
-    runs-on: ubuntu-latest
+
+  pre-releasing:
+    name: "Pre Release"
     needs: CI
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: "ubuntu-latest"
+
     steps:
-      
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          type: 'zip'
-          filename: '${{ github.repository }}-${{ github.sha }}.zip'
-          exclusions: '*.git* *.md'
-      
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "${{ github.repository }}-${{ github.sha }}.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
-     
-      - name: Release on push
-        uses: rymndhng/release-on-push-action@master
-        with:
-          bump_version_scheme: minor
-          use_github_release_notes: true
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE
+            *.sh
+            *.txt
