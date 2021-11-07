@@ -32,7 +32,7 @@ jobs:
           chmod +x chumbi-image-downloader.sh
           ./chumbi-image-downloader.sh auto
   
-  Release-on-push:
+  Release:
     runs-on: ubuntu-latest
     needs: CI
     env:
@@ -44,7 +44,7 @@ jobs:
         with:
           type: 'zip'
           filename: '${{ github.repository }}-${{ github.sha }}.zip'
-          exclusions: '*.git* *.github* .gitattribute'
+          exclusions: '*.git* *.md'
       
       - name: Upload Release
         uses: ncipollo/release-action@v1
