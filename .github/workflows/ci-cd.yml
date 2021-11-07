@@ -38,10 +38,12 @@ jobs:
           dest: '${{ github.repository }}-${{ github.hash }}.zip'
 
       - name: Upload Release
-        uses: ncipollo/release-action@v1
+        uses: svenstaro/upload-release-action@v2
         with:
-          artifacts: '${{ github.repository }}-${{ github.hash }}.zip'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          file: '${{ github.repository }}-${{ github.hash }}.zip'
+          asset_name: '${{ github.repository }}-${{ github.hash }}.zip'
+          tag: ${{ github.ref }}
+          overwrite: true
             
       - name: Automatic Release
         uses: marvinpinto/action-automatic-releases@latest
