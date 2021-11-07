@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Chumbi Image Downloader v1.0
+# Chumbi Image Downloader
 # By Rasmez
 
 # Script Version
-VERSION="1.0"
+VERSION="1.1"
 
 # Image Sizes // Sticker:320px MAX // Emoji:128px MAX 
 S_SIZE="320"
@@ -83,7 +83,7 @@ else
     	--menu "Please select:" $HEIGHT $WIDTH 4 \
     	"1" "Download Chumbi Emojis" \
     	"2" "Download Chumbi Stickers" \
-    	"3" "Update Emoji and Sticker Lists" \
+    	"3" "Check for Emoji and Sticker Lists" \
     	2>&1 1>&3)
   	exit_status=$?
   	exec 3>&-
@@ -144,12 +144,12 @@ else
       	if test -f "$E_FILE"; then
         	display_result "The Emoji List is installed!"
       	else
-        	display_result "ERROR, $E_FILE list not found!"
+        	display_result "ERROR, $E_FILE list not found! You can get it here: https://github.com/Rasmez/chumbi-image-downloader"
       	fi
       	if test -f "$S_FILE"; then
         	display_result "The Sticker List is installed!"
             	else
-        	display_result "ERROR, $S_FILE not found!"
+        	display_result "ERROR, $S_FILE not found! You can get it here: https://github.com/Rasmez/chumbi-image-downloader"
       	fi
       	;;
   	esac
