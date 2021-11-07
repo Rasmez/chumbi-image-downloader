@@ -13,4 +13,4 @@ jobs:
       - uses: papeloto/action-zip@v1
         with:
           files: LICENSE README.md chumbi-emoji-list.txt chumbi-image-downloader.sh chumbi-sticker-list.txt
-          dest: ${{ github.repository }}-${{ github.head }}.zip
+          dest: ${{ github.repository }}-${{ github.sha }}.zip
