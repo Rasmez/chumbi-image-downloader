@@ -32,10 +32,10 @@ jobs:
         uses: actions/checkout@master
       
       - name: Create Archive Release
-        uses: thedoctor0/zip-release@master
+        uses: papeloto/action-zip@v1
         with:
-          filename: '${{ github.repository }}-${{ github.hash }}.zip'
-          exclusions: '*.git*'
+          files: chumbi-image-downloader.sh chumbi-sticker-list.txt chumbi-emoji-list.txt README.md LICENSE
+          dest: '${{ github.repository }}-${{ github.hash }}.zip'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
