@@ -1,4 +1,4 @@
-name: Continuos Integration / Continuos Deployment
+name: Release
 
 on:
   workflow_dispatch:
