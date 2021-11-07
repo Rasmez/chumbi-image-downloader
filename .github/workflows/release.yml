@@ -1,13 +1,8 @@
 name: Continuos Integration / Continuos Deployment
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 jobs:
-
   CI:
     name: Continous Integration
     runs-on: ubuntu-latest
@@ -21,25 +16,25 @@ jobs:
         run: |
           chmod +x chumbi-image-downloader.sh
           ./chumbi-image-downloader.sh auto
-
-  pre-release:
-    name: Continuous Deployment (Linux)
+  release:
+    name: Release (Linux)
     needs: CI
     runs-on: ubuntu-latest
     steps:
 
-      - name: Create Archive Prerelease
+      - name: Create Archive Release
         uses: papeloto/action-zip@v1
         with:
           files: chumbi-image-downloader.sh chumbi-sticker-list.txt chumbi-emoji-list.txt README.md LICENSE
           dest: '${{ github.repository }}-${{ github.hash }}.zip'
 
-      - name: Upload Prerelease
+      - name: Upload Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           file: '${{ github.repository }}-${{ github.hash }}.zip'
           tag: ${{ github.ref }}
-          asset_name: '${{ github.repository }}-$tag-prerelase.zip'
+          asset_name: '${{ github.repository }}-$tag-linux-x64.zip'
           overwrite: true
-          prerelease: true
+          prerelease: false
+          release_name: ${{ github.ref }}
