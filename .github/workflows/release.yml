@@ -17,7 +17,7 @@ jobs:
           chmod +x chumbi-image-downloader.sh
           ./chumbi-image-downloader.sh auto
   release:
-    name: Release (Linux)
+    name: Release
     needs: CI
     runs-on: ubuntu-latest
     steps:
