@@ -21,7 +21,23 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: '6.x'
+          includePrerelease: true
+      
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.7
+      
+      - name: Display SemVer
+        run: |
+          echo "SemVer: $GITVERSION_SEMVER"
       
       # Runs a set of commands using the runners shell
       - name: Run in automatic mode
