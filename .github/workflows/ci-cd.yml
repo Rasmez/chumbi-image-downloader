@@ -40,7 +40,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           file: '${{ github.repository }}-${{ github.hash }}.zip'
           tag: ${{ github.ref }}
-          asset_name: '${{ github.repository }}-{{ github.hash }}-prerelease.zip'
+          asset_name: '${{ github.repository }}-${{ github.hash }}-prerelease.zip'
           overwrite: true
           prerelease: true
           release_name: ${{ github.ref }}-prerelease
