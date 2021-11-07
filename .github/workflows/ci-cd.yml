@@ -44,7 +44,7 @@ jobs:
         with:
           type: 'zip'
           filename: '${{ github.repository }}-${{ github.sha }}.zip'
-          exclusions: '*.git* *.gitattribute* *.github*'
+          exclusions: '*.git* */.github/* .gitattribute'
       
       - name: Upload release binary
         uses: actions/upload-release-asset@v1.0.2
